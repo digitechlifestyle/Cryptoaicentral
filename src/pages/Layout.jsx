@@ -79,6 +79,7 @@ export default function Layout({ children, currentPageName }) {
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [showAllCategories, setShowAllCategories] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
 
   const checkUser = async () => {
@@ -89,6 +90,8 @@ export default function Layout({ children, currentPageName }) {
     } catch (error) {
       setUser(null);
       setIsAdmin(false);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -138,7 +141,7 @@ export default function Layout({ children, currentPageName }) {
     // Add ads.txt content as a comment for reference
     // For ads.txt file, you need to host: google.com, pub-7177380383874452, DIRECT, f08c47fec0942fa0
     // Contact Base44 support to add ads.txt file to your domain root
-  }, [location.pathname]);
+  }, []);
 
   const handleLogin = (isRegister = false) => {
     // FIX: Use base44's built-in redirect method for login or register
@@ -183,6 +186,17 @@ export default function Layout({ children, currentPageName }) {
   ] : [];
 
   const categoriesToShow = showAllCategories ? topCategories : topCategories.slice(0, 8);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50/30 to-yellow-50/20">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-slate-600 font-medium">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <SidebarProvider>
