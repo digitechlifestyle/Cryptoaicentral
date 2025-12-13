@@ -27,6 +27,10 @@ export default function RewardsPage() {
       const currentUser = await base44.auth.me();
       setUser(currentUser);
 
+      if (!currentUser || !currentUser.email) {
+        throw new Error("User not authenticated");
+      }
+
       // Load user points
       const pointsData = await base44.entities.UserPoints.filter({ user_email: currentUser.email });
       if (pointsData.length > 0) {
@@ -57,11 +61,12 @@ export default function RewardsPage() {
       const allPoints = await base44.entities.UserPoints.list("-lifetime_points", 10);
       setLeaderboard(allPoints);
 
+      setIsLoading(false);
     } catch (error) {
       console.error("Failed to load rewards data:", error);
-      await base44.auth.redirectToLogin(window.location.href);
+      setIsLoading(false);
+      base44.auth.redirectToLogin(window.location.href);
     }
-    setIsLoading(false);
   };
 
   const handleRedeem = async (reward) => {
