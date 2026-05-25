@@ -6,13 +6,24 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Clock, User as UserIcon, Search, TrendingUp } from "lucide-react";
+import { Clock, User as UserIcon, Search, TrendingUp, ArrowRight, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import SeoMeta from "../components/shared/SeoMeta";
 import RotatingBanner from "@/components/shared/RotatingBanner";
 import GoogleAd from "@/components/shared/GoogleAd";
 import { allSeoArticles, allArticleCategories } from "@/data/allSeoArticles";
+
+function cardImageUrl(post) {
+  const label = encodeURIComponent((post.category || "Crypto AI") + " Guide");
+  return `https://placehold.co/900x500/0f172a/ffffff?text=${label}`;
+}
+
+function getExcerpt(post) {
+  if (post.excerpt && post.excerpt.length > 80) return post.excerpt;
+  const clean = (post.content || "").replace(/[#*_`>\[\]()]/g, " ").replace(/\s+/g, " ").trim();
+  return clean.slice(0, 220) + (clean.length > 220 ? "..." : "");
+}
 
 export default function BlogPage() {
   const [posts, setPosts] = useState(allSeoArticles);
@@ -109,39 +120,21 @@ export default function BlogPage() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        <div className="mb-8 flex justify-center"><RotatingBanner bannerType="leaderboard" /></div>
         <div className="mb-8 flex justify-center">
-          <RotatingBanner bannerType="leaderboard" />
-        </div>
-
-        <div className="mb-8 flex justify-center">
-          <GoogleAd
-            adSlot="1234567890"
-            style={{ display: 'block', width: '728px', height: '90px', maxWidth: '100%' }}
-            adFormat="horizontal"
-          />
+          <GoogleAd adSlot="1234567890" style={{ display: 'block', width: '728px', height: '90px', maxWidth: '100%' }} adFormat="horizontal" />
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 md:p-6 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_240px] gap-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
-              <Input
-                value={searchQuery}
-                onChange={(event) => setSearchQuery(event.target.value)}
-                placeholder="Search Bitcoin, DeFi, AI agents, wallets, tokens, regulation..."
-                className="pl-10"
-              />
+              <Input value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} placeholder="Search Bitcoin, DeFi, AI agents, wallets, tokens, regulation..." className="pl-10" />
             </div>
             <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-              <SelectTrigger>
-                <SelectValue placeholder="Category" />
-              </SelectTrigger>
+              <SelectTrigger><SelectValue placeholder="Category" /></SelectTrigger>
               <SelectContent>
-                {categories.map(category => (
-                  <SelectItem key={category} value={category}>
-                    {category === "all" ? "All categories" : category}
-                  </SelectItem>
-                ))}
+                {categories.map(category => <SelectItem key={category} value={category}>{category === "all" ? "All categories" : category}</SelectItem>)}
               </SelectContent>
             </Select>
           </div>
@@ -157,33 +150,29 @@ export default function BlogPage() {
             </div>
 
             {isLoading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {[1,2,3,4].map(item => <div key={item} className="h-64 bg-white rounded-2xl animate-pulse" />)}
-              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">{[1,2,3,4].map(item => <div key={item} className="h-80 bg-white rounded-2xl animate-pulse" />)}</div>
             ) : filteredPosts.length === 0 ? (
               <Card><CardContent className="p-10 text-center text-slate-600">No articles found. Try another search.</CardContent></Card>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {filteredPosts.map(post => (
-                  <Link key={post.slug || post.id} to={getGuideUrl(post)}>
+                  <Link key={post.slug || post.id} to={getGuideUrl(post)} className="group">
                     <Card className="h-full hover:shadow-xl transition-all duration-300 overflow-hidden bg-white border-slate-200">
-                      <CardContent className="p-6 flex flex-col h-full">
-                        <div className="flex items-center gap-2 mb-4 flex-wrap">
-                          <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-100">{post.category}</Badge>
-                          <span className="text-xs text-slate-500 flex items-center gap-1">
-                            <Clock className="w-3 h-3" />
-                            {post.reading_time || Math.ceil((post.content || '').split(' ').length / 200)} min read
-                          </span>
+                      <div className="relative h-48 overflow-hidden bg-slate-950">
+                        <img src={cardImageUrl(post)} alt={`${post.title} visual guide`} className="w-full h-full object-cover opacity-95 group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent" />
+                        <Badge className="absolute left-4 bottom-4 bg-blue-600 text-white">{post.category}</Badge>
+                      </div>
+                      <CardContent className="p-6 flex flex-col h-[calc(100%-12rem)]">
+                        <div className="flex items-center gap-3 mb-4 text-xs text-slate-500 flex-wrap">
+                          <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{post.reading_time || Math.ceil((post.content || '').split(' ').length / 200)} min read</span>
+                          <span className="flex items-center gap-1"><BookOpen className="w-3 h-3" />Long-form guide</span>
                         </div>
-                        <h3 className="text-xl font-bold text-slate-900 mb-3 line-clamp-2 hover:text-blue-600 transition-colors">
-                          {post.title}
-                        </h3>
-                        <p className="text-slate-600 line-clamp-4 mb-5 flex-1">
-                          {post.excerpt}
-                        </p>
+                        <h3 className="text-xl font-bold text-slate-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">{post.title}</h3>
+                        <p className="text-slate-600 line-clamp-5 mb-5 flex-1">{getExcerpt(post)}</p>
                         <div className="flex items-center justify-between text-sm text-slate-500 pt-4 border-t border-slate-100">
                           <span className="flex items-center gap-1"><UserIcon className="w-4 h-4" /> {post.author_name || "Editorial Team"}</span>
-                          <span>{postDate(post)}</span>
+                          <span className="font-semibold text-blue-600 flex items-center gap-1">Read <ArrowRight className="w-4 h-4" /></span>
                         </div>
                       </CardContent>
                     </Card>
@@ -196,16 +185,9 @@ export default function BlogPage() {
           <aside className="space-y-6">
             <Card className="bg-white border-slate-200">
               <CardContent className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <TrendingUp className="w-5 h-5 text-blue-600" />
-                  <h3 className="font-bold text-slate-900">Money-Maker Focus</h3>
-                </div>
-                <p className="text-sm text-slate-600 mb-4">
-                  This content structure supports AdSense, affiliate reviews, comparison pages, newsletter growth and sponsored listings.
-                </p>
-                <Link to={createPageUrl("Advertise")}>
-                  <Button className="w-full">Advertise With Us</Button>
-                </Link>
+                <div className="flex items-center gap-2 mb-3"><TrendingUp className="w-5 h-5 text-blue-600" /><h3 className="font-bold text-slate-900">Money-Maker Focus</h3></div>
+                <p className="text-sm text-slate-600 mb-4">This content structure supports AdSense, affiliate reviews, comparison pages, newsletter growth and sponsored listings.</p>
+                <Link to={createPageUrl("Advertise")}><Button className="w-full">Advertise With Us</Button></Link>
               </CardContent>
             </Card>
             <RotatingBanner bannerType="vertical" />
