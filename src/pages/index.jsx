@@ -1,63 +1,34 @@
-import Layout from "./Layout.jsx";
+import PublicLayout from "./PublicLayout.jsx";
 
 import Home from "./Home";
-
 import Browse from "./Browse";
-
 import Category from "./Category";
-
 import Featured from "./Featured";
-
 import Admin from "./Admin";
-
 import Pricing from "./Pricing";
-
 import AddListing from "./AddListing";
-
 import Project from "./Project";
-
 import Dashboard from "./Dashboard";
-
 import Blog from "./Blog";
-
 import BlogPost from "./BlogPost";
-
 import GuidePost from "./GuidePost";
-
 import About from "./About";
-
 import EditorialStandards from "./EditorialStandards";
-
 import Contact from "./Contact";
-
 import BrandAssets from "./BrandAssets";
-
 import AffiliateProgram from "./AffiliateProgram";
-
 import EditBlogPost from "./EditBlogPost";
-
 import CreateBlogPost from "./CreateBlogPost";
-
 import AdManagement from "./AdManagement";
-
 import SiteHealthCheck from "./SiteHealthCheck";
-
 import BlogContentStrategy from "./BlogContentStrategy";
-
 import Settings from "./Settings";
-
 import PaymentIntegrations from "./PaymentIntegrations";
-
 import AffiliateTutorial from "./AffiliateTutorial";
-
 import Advertise from "./Advertise";
-
 import Rewards from "./Rewards";
-
 import Compare from "./Compare";
-
 import LearnHub from "./LearnHub";
-
 import NewsletterCampaigns from "./NewsletterCampaigns";
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
@@ -96,14 +67,9 @@ const PAGES = {
 }
 
 function _getCurrentPage(url) {
-    if (url.endsWith('/')) {
-        url = url.slice(0, -1);
-    }
+    if (url.endsWith('/')) url = url.slice(0, -1);
     let urlLastPart = url.split('/').pop();
-    if (urlLastPart.includes('?')) {
-        urlLastPart = urlLastPart.split('?')[0];
-    }
-
+    if (urlLastPart.includes('?')) urlLastPart = urlLastPart.split('?')[0];
     const pageName = Object.keys(PAGES).find(page => page.toLowerCase() === urlLastPart.toLowerCase());
     return pageName || Object.keys(PAGES)[0];
 }
@@ -113,7 +79,7 @@ function PagesContent() {
     const currentPage = _getCurrentPage(location.pathname);
     
     return (
-        <Layout currentPageName={currentPage}>
+        <PublicLayout currentPageName={currentPage}>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/Home" element={<Home />} />
@@ -148,7 +114,7 @@ function PagesContent() {
                 <Route path="/NewsletterCampaigns" element={<NewsletterCampaigns />} />
                 <Route path="*" element={<Home />} />
             </Routes>
-        </Layout>
+        </PublicLayout>
     );
 }
 
