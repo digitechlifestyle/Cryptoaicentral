@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://digitechlifestyle.github.io/Cryptoaicentral/sitemap.xml
+Sitemap: https://digitechlifestyle.github.io/Cryptoaicentral/sitemap-guides-extra.xml
