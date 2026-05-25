@@ -56,7 +56,7 @@ import Rewards from "./Rewards";
 
 import Compare from "./Compare";
 
-import Learn from "./Learn";
+import LearnHub from "./LearnHub";
 
 import NewsletterCampaigns from "./NewsletterCampaigns";
 
@@ -91,7 +91,7 @@ const PAGES = {
     Advertise,
     Rewards,
     Compare,
-    Learn,
+    Learn: LearnHub,
     NewsletterCampaigns,
 }
 
@@ -144,7 +144,7 @@ function PagesContent() {
                 <Route path="/Advertise" element={<Advertise />} />
                 <Route path="/Rewards" element={<Rewards />} />
                 <Route path="/Compare" element={<Compare />} />
-                <Route path="/Learn" element={<Learn />} />
+                <Route path="/Learn" element={<LearnHub />} />
                 <Route path="/NewsletterCampaigns" element={<NewsletterCampaigns />} />
                 <Route path="*" element={<Home />} />
             </Routes>
