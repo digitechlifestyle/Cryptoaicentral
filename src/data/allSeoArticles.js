@@ -1,5 +1,6 @@
 import { seoArticles } from "./seoArticles";
 import { extraArticleSeeds } from "./seoArticlesExtra";
+import { moreArticleSeeds } from "./seoArticlesMore";
 
 const buildContent = ({ title, topic, audience, definition, why, sections, risks, tools, nextSteps }) => `
 # ${title}
@@ -114,7 +115,7 @@ AI can help summarise information, compare tools, monitor markets and identify p
 ${topic} is part of the wider shift toward digital assets, AI-supported tools and programmable finance. The opportunity is real, but strong outcomes come from education, careful comparison and disciplined risk management.
 `;
 
-export const extraEvergreenArticles = extraArticleSeeds.map((article) => ({
+const buildArticles = (articles) => articles.map((article) => ({
   ...article,
   author_name: "Crypto AI Central Editorial Team",
   created_date: "2026-05-25T12:00:00.000Z",
@@ -124,7 +125,10 @@ export const extraEvergreenArticles = extraArticleSeeds.map((article) => ({
   content: buildContent(article)
 }));
 
-export const allSeoArticles = [...seoArticles, ...extraEvergreenArticles];
+export const extraEvergreenArticles = buildArticles(extraArticleSeeds);
+export const moreEvergreenArticles = buildArticles(moreArticleSeeds);
+
+export const allSeoArticles = [...seoArticles, ...extraEvergreenArticles, ...moreEvergreenArticles];
 
 export const allArticleCategories = ["all", ...Array.from(new Set(allSeoArticles.map((article) => article.category)))];
 
