@@ -2,8 +2,9 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 
-// https://vite.dev/config/
+// GitHub Pages project URL: https://digitechlifestyle.github.io/Cryptoaicentral/
 export default defineConfig({
+  base: '/Cryptoaicentral/',
   plugins: [react()],
   server: {
     allowedHosts: true
@@ -21,4 +22,4 @@ export default defineConfig({
       },
     },
   },
-}) 
+})
