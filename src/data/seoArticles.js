@@ -220,6 +220,174 @@ const articleSeeds = [
       { name: "Tax export tools", body: "Download records for accounting." }
     ],
     nextSteps: "Compare at least three exchanges, enable security settings, test withdrawals and keep long-term holdings in a wallet you control where appropriate."
+  },
+  {
+    slug: "what-is-a-cbdc",
+    title: "What Is a CBDC? Central Bank Digital Currencies Explained",
+    category: "CBDC",
+    excerpt: "Understand CBDCs, how they differ from crypto and stablecoins, and why governments are exploring digital money systems.",
+    tags: ["CBDC", "Digital Money", "Central Banks"],
+    reading_time: 9,
+    topic: "CBDCs",
+    audience: "A CBDC is a digital form of central bank money. It is not the same as Bitcoin or a private stablecoin because it is issued or backed by a public monetary authority.",
+    definition: "CBDC stands for central bank digital currency. It refers to digital money issued by or under the authority of a central bank. Some CBDC models are designed for wholesale banking, while others are aimed at retail users and everyday payments.",
+    why: "CBDCs matter because they could change payments, banking access, cross-border settlement, identity systems and financial policy. They also raise important questions about privacy, surveillance, resilience and user control.",
+    sections: [
+      { heading: "Retail vs Wholesale CBDCs", body: "Retail CBDCs would be used by the public for payments. Wholesale CBDCs are aimed at banks, settlement institutions and financial market infrastructure." },
+      { heading: "CBDCs vs Stablecoins", body: "Stablecoins are usually issued by private companies or protocols. CBDCs are linked to central bank money and public-sector monetary policy." },
+      { heading: "Privacy and Control", body: "CBDCs can be designed in different ways. The details around identity, transaction monitoring, offline payments and data access are critical." }
+    ],
+    risks: [
+      { name: "Privacy concerns", body: "Users may worry about how transaction data is stored and accessed." },
+      { name: "Operational resilience", body: "A digital public money system must be robust during outages or cyberattacks." },
+      { name: "Banking disruption", body: "A badly designed CBDC could affect deposits and commercial bank funding." }
+    ],
+    tools: [
+      { name: "Central bank research papers", body: "Useful for understanding policy goals and pilots." },
+      { name: "Digital identity frameworks", body: "Often connected to CBDC access and compliance models." },
+      { name: "Payment infrastructure reports", body: "Help compare CBDCs with cards, bank transfers and stablecoins." }
+    ],
+    nextSteps: "Follow official central bank updates, compare CBDCs with stablecoins, and study privacy and digital identity implications before forming a view."
+  },
+  {
+    slug: "what-is-an-nft",
+    title: "What Is an NFT? Digital Ownership, Collectibles and Utility Explained",
+    category: "NFTs",
+    excerpt: "Learn what NFTs are, how they work, where they are useful, and what risks buyers should understand before participating.",
+    tags: ["NFT", "Digital Ownership", "Web3"],
+    reading_time: 8,
+    topic: "NFTs",
+    audience: "NFTs are unique blockchain tokens that can represent digital art, collectibles, memberships, game items or proof of ownership. They are not automatically valuable just because they are scarce.",
+    definition: "NFT stands for non-fungible token. Unlike a normal token where each unit is interchangeable, an NFT has a unique identifier. That uniqueness can be used to represent a specific asset, permission, membership or record.",
+    why: "NFTs matter because they introduced mainstream audiences to digital ownership. Beyond art speculation, they can support ticketing, gaming, loyalty, identity, credentials and access rights.",
+    sections: [
+      { heading: "Digital Collectibles", body: "NFTs became popular through digital art and collectibles. The token proves ownership of the blockchain record, not necessarily copyright ownership." },
+      { heading: "Utility NFTs", body: "Some NFTs provide access to communities, events, subscriptions, games or real-world benefits." },
+      { heading: "Metadata and Storage", body: "The token may point to metadata stored on-chain or off-chain. Buyers should understand where images and records are stored." }
+    ],
+    risks: [
+      { name: "Speculation", body: "NFT prices can collapse quickly when demand fades." },
+      { name: "Copyright confusion", body: "Owning an NFT does not automatically mean owning full intellectual property rights." },
+      { name: "Fake collections", body: "Scammers can copy images and create unofficial collections." }
+    ],
+    tools: [
+      { name: "NFT marketplaces", body: "Used to discover, buy and sell collections." },
+      { name: "Wallets", body: "Needed to hold NFTs and sign transactions." },
+      { name: "Blockchain explorers", body: "Useful for checking ownership and transaction history." }
+    ],
+    nextSteps: "Check the official project links, verify contract addresses, understand rights and utility, and never buy based only on hype."
+  },
+  {
+    slug: "what-is-a-crypto-airdrop",
+    title: "What Is a Crypto Airdrop? Rewards, Eligibility and Risks Explained",
+    category: "Crypto Basics",
+    excerpt: "A beginner guide to crypto airdrops, including how they work, why projects use them, and how to avoid scams.",
+    tags: ["Airdrops", "Crypto Rewards", "Web3"],
+    reading_time: 8,
+    topic: "Crypto airdrops",
+    audience: "A crypto airdrop is a token distribution used to reward users, grow communities or decentralize ownership. Some are legitimate, but scam airdrops are common.",
+    definition: "A crypto airdrop is when a project distributes tokens to wallets, often based on activity, eligibility rules or community participation. Some require no action, while others ask users to claim tokens through a website.",
+    why: "Airdrops matter because they can reward early users and bring attention to new networks or protocols. They also attract scammers because users may rush to connect wallets without checking safety.",
+    sections: [
+      { heading: "Retroactive Airdrops", body: "These reward users for past activity such as using a protocol, bridging assets, voting or testing an app." },
+      { heading: "Claim Pages", body: "Many airdrops use a claim website. Users must be careful because fake pages can drain wallets." },
+      { heading: "Eligibility", body: "Projects may use snapshots, transaction history, points, testnet use or community participation to decide who receives tokens." }
+    ],
+    risks: [
+      { name: "Wallet drainers", body: "Fake claim sites can ask for malicious approvals." },
+      { name: "Tax obligations", body: "Airdrops may create tax reporting requirements depending on jurisdiction." },
+      { name: "Low-quality tokens", body: "Not every airdropped token has real value or liquidity." }
+    ],
+    tools: [
+      { name: "Official project channels", body: "Verify claims through official websites and verified social accounts." },
+      { name: "Token approval checkers", body: "Review and revoke risky smart contract permissions." },
+      { name: "Portfolio trackers", body: "Monitor received tokens and values." }
+    ],
+    nextSteps: "Use a separate wallet for risky interactions, verify URLs carefully, revoke unnecessary approvals, and keep records for tax purposes."
+  },
+  {
+    slug: "how-to-research-a-crypto-project",
+    title: "How to Research a Crypto Project Before You Invest or Use It",
+    category: "Research",
+    excerpt: "A practical DYOR framework for checking crypto teams, tokenomics, security, community, revenue and risk before taking action.",
+    tags: ["DYOR", "Research", "Risk Management"],
+    reading_time: 10,
+    topic: "Crypto project research",
+    audience: "Crypto research is the process of checking a project's fundamentals, risks and credibility before using the product, buying the token or promoting it.",
+    definition: "Researching a crypto project means looking beyond price charts. It includes evaluating the problem, product, team, tokenomics, smart contract risk, community, partnerships, regulation and actual usage.",
+    why: "Crypto markets move quickly and many projects fail. A clear research framework helps users avoid scams, weak token design, fake partnerships and products with no real demand.",
+    sections: [
+      { heading: "Problem and Product", body: "Start by asking what problem the project solves and whether users genuinely need it. A token should not be the only reason the project exists." },
+      { heading: "Tokenomics", body: "Review supply, emissions, unlocks, allocation, utility and incentives. Bad tokenomics can hurt users even when the product seems useful." },
+      { heading: "Security and Audits", body: "Check audits, bug bounties, incident history, admin keys, governance controls and whether the code is open source." }
+    ],
+    risks: [
+      { name: "Fake partnerships", body: "Some projects exaggerate or invent relationships." },
+      { name: "Hidden unlocks", body: "Large token unlocks can pressure prices." },
+      { name: "Weak product-market fit", body: "A strong narrative does not guarantee real usage." }
+    ],
+    tools: [
+      { name: "Block explorers", body: "Check token contracts, holder distribution and transaction activity." },
+      { name: "Analytics dashboards", body: "Review users, TVL, revenue and protocol activity." },
+      { name: "Docs and governance forums", body: "Understand roadmap, parameters and community decisions." }
+    ],
+    nextSteps: "Create a simple checklist, compare projects in the same category, and avoid acting until the major risks are understood."
+  },
+  {
+    slug: "crypto-tax-basics",
+    title: "Crypto Tax Basics: Records, Transactions and Common Mistakes",
+    category: "Tax",
+    excerpt: "Understand why crypto tax records matter, which transactions may be taxable, and how to prepare better records.",
+    tags: ["Crypto Tax", "Records", "Compliance"],
+    reading_time: 9,
+    topic: "Crypto tax basics",
+    audience: "Crypto tax rules vary by country, but users usually need accurate records of purchases, sales, swaps, income, rewards and transfers.",
+    definition: "Crypto tax basics means understanding that digital asset activity can create reporting obligations. This may include capital gains, income from rewards, airdrops, staking, mining, NFTs or business activity.",
+    why: "Tax compliance matters because exchanges, wallets and DeFi platforms can create many transactions. Without records, users may struggle to calculate gains, losses, income and cost basis later.",
+    sections: [
+      { heading: "Taxable Events", body: "Depending on the jurisdiction, selling, swapping, spending or receiving crypto may create a taxable event." },
+      { heading: "Record Keeping", body: "Users should keep dates, amounts, wallet addresses, transaction IDs, fees, cost basis and notes about the purpose of transfers." },
+      { heading: "DeFi and NFTs", body: "DeFi, staking, liquidity pools and NFTs can make tax reporting more complex because many small transactions may occur." }
+    ],
+    risks: [
+      { name: "Missing cost basis", body: "Without records, calculating gains and losses becomes difficult." },
+      { name: "Ignoring rewards", body: "Airdrops, staking and referral rewards may be treated differently from capital gains." },
+      { name: "Assuming transfers are disposals", body: "Moving funds between your own wallets may need clear documentation." }
+    ],
+    tools: [
+      { name: "Crypto tax software", body: "Imports exchange and wallet data to help calculate reports." },
+      { name: "CSV exports", body: "Useful records from exchanges and wallets." },
+      { name: "Professional tax advice", body: "Important for high-value, business or complex DeFi activity." }
+    ],
+    nextSteps: "Export your transaction history, label wallet transfers, keep annual records and speak to a qualified tax professional for your jurisdiction."
+  },
+  {
+    slug: "hardware-wallets-vs-software-wallets",
+    title: "Hardware Wallets vs Software Wallets: Which Is Safer for Crypto?",
+    category: "Wallets",
+    excerpt: "Compare hardware and software wallets, including convenience, security, costs, backup methods and best use cases.",
+    tags: ["Hardware Wallets", "Software Wallets", "Crypto Security"],
+    reading_time: 8,
+    topic: "Hardware wallets vs software wallets",
+    audience: "Hardware wallets are usually stronger for long-term storage, while software wallets are more convenient for everyday activity. Many users benefit from using both.",
+    definition: "A hardware wallet is a physical device that keeps private keys offline. A software wallet is an app or browser extension that manages keys on a phone, computer or web environment.",
+    why: "Wallet choice is one of the biggest security decisions in crypto. Convenience can increase risk, while strong security can feel less convenient for beginners.",
+    sections: [
+      { heading: "Hardware Wallet Strengths", body: "Hardware wallets reduce exposure to malware because signing happens on a separate device. They are useful for long-term holdings and larger balances." },
+      { heading: "Software Wallet Strengths", body: "Software wallets are fast, free or low-cost, and useful for DeFi, NFTs, testing apps and small everyday transactions." },
+      { heading: "Using Both Together", body: "Many users keep savings in a hardware wallet and use a separate software wallet for active experimentation." }
+    ],
+    risks: [
+      { name: "Seed phrase exposure", body: "Both wallet types can be compromised if the recovery phrase is stolen." },
+      { name: "Fake wallet apps", body: "Users must download wallet software only from official sources." },
+      { name: "Blind signing", body: "Approving transactions without understanding them can lead to asset loss." }
+    ],
+    tools: [
+      { name: "Hardware wallets", body: "Useful for long-term storage and transaction confirmation." },
+      { name: "Software wallets", body: "Useful for daily Web3 use and smaller balances." },
+      { name: "Approval revocation tools", body: "Help review and remove old smart contract permissions." }
+    ],
+    nextSteps: "Split funds by purpose, use a hardware wallet for larger holdings, keep recovery phrases offline, and test every new wallet with a small amount first."
   }
 ];
 
