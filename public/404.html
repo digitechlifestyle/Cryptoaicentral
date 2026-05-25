@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto AI Central</title>
+    <script>
+      // GitHub Pages fallback for Vite/React Router single-page app routes.
+      // Redirect unknown paths back to the project root so React Router can load.
+      const repoBase = '/Cryptoaicentral/';
+      const currentPath = window.location.pathname;
+      const relativePath = currentPath.startsWith(repoBase)
+        ? currentPath.slice(repoBase.length)
+        : currentPath.replace(/^\//, '');
+      const query = window.location.search || '';
+      const hash = window.location.hash || '';
+      window.location.replace(repoBase + '?redirect=' + encodeURIComponent(relativePath + query + hash));
+    </script>
+  </head>
+  <body>
+    <p>Loading Crypto AI Central...</p>
+  </body>
+</html>
