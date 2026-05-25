@@ -22,6 +22,8 @@ import Blog from "./Blog";
 
 import BlogPost from "./BlogPost";
 
+import GuidePost from "./GuidePost";
+
 import About from "./About";
 
 import EditorialStandards from "./EditorialStandards";
@@ -72,6 +74,7 @@ const PAGES = {
     Dashboard,
     Blog,
     BlogPost,
+    GuidePost,
     About,
     EditorialStandards,
     Contact,
@@ -124,6 +127,7 @@ function PagesContent() {
                 <Route path="/Dashboard" element={<Dashboard />} />
                 <Route path="/Blog" element={<Blog />} />
                 <Route path="/BlogPost" element={<BlogPost />} />
+                <Route path="/GuidePost" element={<GuidePost />} />
                 <Route path="/About" element={<About />} />
                 <Route path="/EditorialStandards" element={<EditorialStandards />} />
                 <Route path="/Contact" element={<Contact />} />
