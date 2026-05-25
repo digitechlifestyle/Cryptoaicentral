@@ -1,4 +1,4 @@
-import PublicLayout from "./PublicLayout.jsx";
+import Layout from "./Layout.jsx";
 
 import Home from "./Home";
 import Browse from "./Browse";
@@ -79,7 +79,7 @@ function PagesContent() {
     const currentPage = _getCurrentPage(location.pathname);
     
     return (
-        <PublicLayout currentPageName={currentPage}>
+        <Layout currentPageName={currentPage}>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/Home" element={<Home />} />
@@ -114,7 +114,7 @@ function PagesContent() {
                 <Route path="/NewsletterCampaigns" element={<NewsletterCampaigns />} />
                 <Route path="*" element={<Home />} />
             </Routes>
-        </PublicLayout>
+        </Layout>
     );
 }
 
