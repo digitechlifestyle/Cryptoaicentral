@@ -83,6 +83,11 @@ export default function BlogPage() {
     }
   };
 
+  const getGuideUrl = (post) => {
+    const isStaticGuide = allSeoArticles.some(article => article.slug === post.slug);
+    return createPageUrl(isStaticGuide ? "GuidePost" : "BlogPost") + `?slug=${post.slug}`;
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20">
       <SeoMeta
@@ -160,7 +165,7 @@ export default function BlogPage() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {filteredPosts.map(post => (
-                  <Link key={post.slug || post.id} to={createPageUrl("BlogPost") + `?slug=${post.slug}`}>
+                  <Link key={post.slug || post.id} to={getGuideUrl(post)}>
                     <Card className="h-full hover:shadow-xl transition-all duration-300 overflow-hidden bg-white border-slate-200">
                       <CardContent className="p-6 flex flex-col h-full">
                         <div className="flex items-center gap-2 mb-4 flex-wrap">
