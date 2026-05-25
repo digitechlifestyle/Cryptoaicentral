@@ -12,11 +12,11 @@ import { createPageUrl } from "@/utils";
 import SeoMeta from "../components/shared/SeoMeta";
 import RotatingBanner from "@/components/shared/RotatingBanner";
 import GoogleAd from "@/components/shared/GoogleAd";
-import { evergreenArticles, articleCategories } from "@/data/seoArticles";
+import { allSeoArticles, allArticleCategories } from "@/data/allSeoArticles";
 
 export default function BlogPage() {
-  const [posts, setPosts] = useState(evergreenArticles);
-  const [filteredPosts, setFilteredPosts] = useState(evergreenArticles);
+  const [posts, setPosts] = useState(allSeoArticles);
+  const [filteredPosts, setFilteredPosts] = useState(allSeoArticles);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -64,16 +64,16 @@ export default function BlogPage() {
     setIsLoading(true);
     try {
       const data = await BlogPost.filter({ published: true }, "-created_date", 50);
-      const merged = [...data, ...evergreenArticles.filter(staticPost => !data.some(post => post.slug === staticPost.slug))];
-      setPosts(merged.length ? merged : evergreenArticles);
+      const merged = [...data, ...allSeoArticles.filter(staticPost => !data.some(post => post.slug === staticPost.slug))];
+      setPosts(merged.length ? merged : allSeoArticles);
     } catch (error) {
       console.error("Error loading posts, using evergreen article fallback:", error);
-      setPosts(evergreenArticles);
+      setPosts(allSeoArticles);
     }
     setIsLoading(false);
   };
 
-  const categories = articleCategories;
+  const categories = allArticleCategories;
 
   const postDate = (post) => {
     try {
@@ -87,8 +87,8 @@ export default function BlogPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20">
       <SeoMeta
         title="Crypto AI Central Blog | Crypto, AI, DeFi, Wallets and Blockchain Guides"
-        description="Read practical long-form guides about Bitcoin, DeFi, crypto wallets, stablecoins, exchanges, AI crypto tools, blockchain and Web3 monetisation."
-        keywords="crypto blog, AI crypto tools, DeFi guide, Bitcoin guide, crypto wallets, stablecoins, blockchain education"
+        description="Read practical long-form guides about Bitcoin, DeFi, crypto wallets, stablecoins, exchanges, AI crypto tools, blockchain, AI agents, token creation, regulation and Web3 monetisation."
+        keywords="crypto blog, AI crypto tools, DeFi guide, Bitcoin guide, crypto wallets, stablecoins, blockchain education, AI agents, crypto regulation"
       />
 
       <section className="bg-slate-950 text-white py-16">
@@ -98,7 +98,7 @@ export default function BlogPage() {
             Practical crypto, blockchain and AI guides built for search, trust and monetisation.
           </h1>
           <p className="text-lg md:text-xl text-slate-300 max-w-3xl">
-            Learn Bitcoin, DeFi, wallets, stablecoins, exchanges, AI tools and Web3 automation with clear explanations, risk warnings and useful next steps.
+            Learn Bitcoin, DeFi, wallets, stablecoins, exchanges, AI agents, token creation, crypto regulation and Web3 automation with clear explanations, risk warnings and useful next steps.
           </p>
         </div>
       </section>
@@ -123,7 +123,7 @@ export default function BlogPage() {
               <Input
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
-                placeholder="Search Bitcoin, DeFi, wallets, AI tools, stablecoins..."
+                placeholder="Search Bitcoin, DeFi, AI agents, wallets, tokens, regulation..."
                 className="pl-10"
               />
             </div>
