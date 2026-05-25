@@ -16,7 +16,12 @@ import {
   Bot,
   Landmark,
   Building2,
-  Search
+  Search,
+  Sparkles,
+  ScrollText,
+  BarChart3,
+  Layers,
+  BadgeDollarSign
 } from "lucide-react";
 import SeoMeta from "../components/shared/SeoMeta";
 import GoogleAd from "../components/shared/GoogleAd";
@@ -27,10 +32,10 @@ const learningPaths = [
   {
     id: "beginner",
     title: "Crypto Basics",
-    description: "Start with Bitcoin, wallets, exchanges and basic digital asset safety.",
+    description: "Start with Bitcoin, NFTs, airdrops, wallets, exchanges and core digital asset safety.",
     icon: GraduationCap,
     color: "from-green-500 to-emerald-600",
-    links: ["what-is-bitcoin", "crypto-wallets-guide", "crypto-exchanges-guide"]
+    links: ["what-is-bitcoin", "what-is-an-nft", "what-is-a-crypto-airdrop", "crypto-wallets-guide", "crypto-exchanges-guide"]
   },
   {
     id: "defi",
@@ -46,25 +51,27 @@ const learningPaths = [
     description: "Learn how AI tools support trading, research, analytics and automation.",
     icon: Bot,
     color: "from-purple-500 to-pink-600",
-    links: ["best-ai-crypto-tools"]
+    links: ["best-ai-crypto-tools", "how-to-research-a-crypto-project"]
   },
   {
     id: "security",
-    title: "Security & Risk",
-    description: "Protect your wallets, avoid scams and learn safe research habits.",
+    title: "Security, Tax & Risk",
+    description: "Protect wallets, avoid scams, understand tax records and research projects properly.",
     icon: Shield,
     color: "from-red-500 to-orange-600",
-    links: ["crypto-wallets-guide", "what-is-defi", "best-ai-crypto-tools"]
+    links: ["hardware-wallets-vs-software-wallets", "crypto-tax-basics", "how-to-research-a-crypto-project", "what-is-a-cbdc"]
   }
 ];
 
 const upcomingGuides = [
-  { title: "What Is a CBDC?", icon: Landmark, category: "CBDC" },
-  { title: "What Is an NFT?", icon: BookOpen, category: "NFTs" },
-  { title: "What Is an Airdrop?", icon: TrendingUp, category: "Crypto Basics" },
-  { title: "How to Research a Crypto Project", icon: Search, category: "Research" },
-  { title: "Crypto Tax Basics", icon: Building2, category: "Tax" },
-  { title: "Hardware Wallets vs Software Wallets", icon: Wallet, category: "Wallets" }
+  { title: "What Are AI Agents?", icon: Sparkles, category: "AI Agents" },
+  { title: "How to Create a Crypto Token", icon: Layers, category: "Token Creation" },
+  { title: "What Are Meme Coins?", icon: TrendingUp, category: "Meme Coins" },
+  { title: "Crypto Law and Regulation Basics", icon: ScrollText, category: "Regulation" },
+  { title: "Blockchain Basics", icon: BookOpen, category: "Blockchain" },
+  { title: "Portfolio Trackers Explained", icon: BarChart3, category: "Portfolio" },
+  { title: "Affiliate Crypto Tools Guide", icon: BadgeDollarSign, category: "Monetisation" },
+  { title: "Best Crypto Research Tools", icon: Search, category: "Research" }
 ];
 
 function getArticle(slug) {
@@ -76,12 +83,15 @@ function articleUrl(slug) {
 }
 
 export default function LearnPage() {
+  const featuredArticles = evergreenArticles.slice(0, 6);
+  const advancedArticles = evergreenArticles.slice(6);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20">
       <SeoMeta
         title="Learn Crypto, Blockchain and AI Tools | Crypto AI Central"
-        description="Start learning Bitcoin, DeFi, crypto wallets, stablecoins, exchanges, AI crypto tools, blockchain safety and Web3 finance with beginner-friendly guides."
-        keywords="learn crypto, crypto guide, blockchain education, AI crypto tools, DeFi guide, wallet security, stablecoins, exchanges"
+        description="Start learning Bitcoin, DeFi, crypto wallets, stablecoins, exchanges, NFTs, CBDCs, airdrops, crypto tax, AI crypto tools, blockchain safety and Web3 finance."
+        keywords="learn crypto, crypto guide, blockchain education, AI crypto tools, DeFi guide, wallet security, stablecoins, exchanges, CBDC, NFT, airdrops, crypto tax"
       />
 
       <section className="bg-slate-950 text-white py-16">
@@ -94,7 +104,7 @@ export default function LearnPage() {
             Learn crypto, blockchain and AI tools without the hype.
           </h1>
           <p className="text-lg md:text-xl text-slate-300 max-w-3xl">
-            Follow structured guides designed for beginners, builders and investors who want clear explanations, practical steps and risk-aware decisions.
+            Follow structured guides designed for beginners, builders and investors who want clear explanations, practical steps, internal links and risk-aware decisions.
           </p>
         </div>
       </section>
@@ -108,7 +118,7 @@ export default function LearnPage() {
           <div className="flex items-end justify-between gap-4 mb-6 flex-wrap">
             <div>
               <h2 className="text-3xl font-bold text-slate-900">Start With a Learning Path</h2>
-              <p className="text-slate-600 mt-2">Each path links to real long-form guides, not dead cards.</p>
+              <p className="text-slate-600 mt-2">Each path links to live long-form guides, not dead cards.</p>
             </div>
             <Link to={createPageUrl("Blog")}>
               <Button variant="outline">View All Guides</Button>
@@ -155,9 +165,9 @@ export default function LearnPage() {
         </div>
 
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-slate-900 mb-6">Core Guides</h2>
+          <h2 className="text-3xl font-bold text-slate-900 mb-6">Essential Guides</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {evergreenArticles.map((article) => (
+            {featuredArticles.map((article) => (
               <Link key={article.slug} to={articleUrl(article.slug)}>
                 <Card className="h-full hover:shadow-xl transition-all duration-300 bg-white border-slate-200">
                   <CardContent className="p-6 flex flex-col h-full">
@@ -180,8 +190,33 @@ export default function LearnPage() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-slate-900 mb-6">Next Guides to Add</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <h2 className="text-3xl font-bold text-slate-900 mb-6">Advanced & Practical Guides</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {advancedArticles.map((article) => (
+              <Link key={article.slug} to={articleUrl(article.slug)}>
+                <Card className="h-full hover:shadow-xl transition-all duration-300 bg-white border-slate-200">
+                  <CardContent className="p-6 flex flex-col h-full">
+                    <div className="flex items-center gap-2 mb-4 flex-wrap">
+                      <Badge className="bg-emerald-100 text-emerald-700 hover:bg-emerald-100">{article.category}</Badge>
+                      <span className="text-xs text-slate-500 flex items-center gap-1">
+                        <Clock className="w-3 h-3" /> {article.reading_time} min read
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-bold mb-3 text-slate-900 hover:text-blue-600 transition-colors">{article.title}</h3>
+                    <p className="text-slate-600 text-sm flex-1">{article.excerpt}</p>
+                    <div className="mt-5 text-blue-600 font-semibold text-sm flex items-center gap-2">
+                      Read guide <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 mb-6">Next Guides to Build</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {upcomingGuides.map((guide) => {
               const IconComponent = guide.icon;
               return (
@@ -193,7 +228,7 @@ export default function LearnPage() {
                     <div>
                       <Badge variant="outline" className="mb-2">{guide.category}</Badge>
                       <h3 className="font-bold text-slate-900">{guide.title}</h3>
-                      <p className="text-sm text-slate-600 mt-1">Planned SEO guide for the next content batch.</p>
+                      <p className="text-sm text-slate-600 mt-1">Next SEO content cluster for ranking and monetisation.</p>
                     </div>
                   </CardContent>
                 </Card>
