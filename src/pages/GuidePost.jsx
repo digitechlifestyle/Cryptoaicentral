@@ -70,6 +70,7 @@ export default function GuidePostPage() {
   const wordCount = post.word_count || content.split(/\s+/).filter(Boolean).length;
   const readingTime = post.reading_time || Math.max(3, Math.ceil(wordCount / 200));
   const imageSrc = post.image_url || fallbackImage(post.topic || post.category || "Crypto AI");
+  const canonicalPath = `${window.location.origin}${createPageUrl("GuidePost")}?slug=${post.slug}`;
   const formattedDate = new Date(post.created_date || Date.now()).toLocaleDateString("en-GB", {
     year: "numeric",
     month: "long",
@@ -82,6 +83,8 @@ export default function GuidePostPage() {
         title={`${post.title} | Crypto AI Central`}
         description={post.excerpt || content.slice(0, 155)}
         keywords={post.tags?.join(", ")}
+        image={imageSrc}
+        url={canonicalPath}
       />
 
       <section className="border-b border-white/10 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.32),_transparent_34%),radial-gradient(circle_at_bottom_right,_rgba(245,158,11,0.22),_transparent_28%)] px-4 py-10 sm:px-6 md:py-16">
