@@ -218,3 +218,7 @@ export const seoArticleCategories = ["all", ...Array.from(new Set(seoArticles.ma
 export function getSeoArticle(slug) {
   return seoArticles.find((article) => article.slug === slug);
 }
+
+export function getArticleBySlug(slug) {
+  return getSeoArticle(slug);
+}
