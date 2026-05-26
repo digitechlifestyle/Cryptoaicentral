@@ -1,10 +1,20 @@
 # Crypto AI Central Project Status
 
-Last updated: 2026-05-25
+Last updated: 2026-05-26
 
 ## Current Status
 
 Crypto AI Central has moved from a thin preview into a stronger SEO/content platform structure. The repository now contains improved SEO metadata, Google AdSense support files, a GitHub Pages deployment workflow, evergreen article data, a combined article library, and a rebuilt Blog page that can display long-form guide content without depending only on backend data.
+
+## Deployment Fix Applied
+
+The previous Vite build failure was caused by `BlogPost.jsx` importing `getArticleBySlug` from `src/data/seoArticles.js` when that export was missing.
+
+Resolved:
+
+- `src/data/seoArticles.js` now exports `getArticleBySlug` as a compatibility helper.
+- `src/pages/BlogPost.jsx` now imports and uses `getSeoArticle` directly.
+- The missing-export blocker has been removed from the current main branch.
 
 ## Completed
 
@@ -17,66 +27,31 @@ Crypto AI Central has moved from a thin preview into a stronger SEO/content plat
 - Added `public/robots.txt`.
 - Added `public/sitemap.xml` with initial guide URLs.
 - Added GitHub Pages deployment workflow at `.github/workflows/deploy.yml`.
-- Added 12 evergreen guide articles in `src/data/seoArticles.js`.
-- Added 8 additional guide article seeds in `src/data/seoArticlesExtra.js`.
+- Added evergreen guide articles in `src/data/seoArticles.js`.
+- Added additional guide article seeds in `src/data/seoArticlesExtra.js` and `src/data/seoArticlesMore.js`.
 - Added combined article export in `src/data/allSeoArticles.js`.
 - Updated Blog page to use the combined article library.
 - Updated Learn page into a real clickable learning hub.
 - Added React Router basename for GitHub Pages in `src/pages/index.jsx`.
+- Patched BlogPost import/export issue blocking deployment.
 
 ## Current Content Count
 
-The content library now contains 20 SEO guide topics:
-
-1. What Is Bitcoin?
-2. What Is DeFi?
-3. Crypto Wallets Guide
-4. Stablecoins Guide
-5. Best AI Crypto Tools
-6. Crypto Exchanges Guide
-7. What Is a CBDC?
-8. What Is an NFT?
-9. What Is a Crypto Airdrop?
-10. How to Research a Crypto Project
-11. Crypto Tax Basics
-12. Hardware Wallets vs Software Wallets
-13. What Are AI Agents?
-14. How to Create a Crypto Token
-15. What Are Meme Coins?
-16. Crypto Law and Regulation Basics
-17. Blockchain Basics
-18. Portfolio Trackers Explained
-19. Affiliate Crypto Tools Guide
-20. Best Crypto Research Tools
+The content library contains SEO guide topics covering Bitcoin, DeFi, crypto wallets, stablecoins, AI crypto tools, exchanges, CBDCs, NFTs, airdrops, research, crypto tax, hardware wallets, AI agents, token creation, meme coins, regulation, blockchain basics, portfolio trackers, affiliate tools and research tools.
 
 ## Remaining Critical Tasks
 
-### 1. BlogPost Wiring
+### 1. GitHub Pages Deployment Verification
 
-`src/pages/BlogPost.jsx` still needs to be wired to `src/data/allSeoArticles.js` so all 20 guide pages can open directly by slug.
-
-Current state: the Blog listing can show the combined library, but article detail pages still need final safe patching.
+The code-level missing-export blocker has been fixed. The next step is verifying that the latest GitHub Actions run completes successfully and that GitHub Pages is enabled with Source set to GitHub Actions.
 
 ### 2. Sitemap Expansion
 
-`public/sitemap.xml` needs the final 8 article URLs added:
+`public/sitemap.xml` should be checked against the final guide slug list so every article URL is included.
 
-- `what-are-ai-agents`
-- `how-to-create-a-crypto-token`
-- `what-are-meme-coins`
-- `crypto-law-and-regulation-basics`
-- `blockchain-basics`
-- `portfolio-trackers-explained`
-- `affiliate-crypto-tools-guide`
-- `best-crypto-research-tools`
+### 3. Live Site QA
 
-### 3. GitHub Pages Deployment
-
-The deployment workflow exists, but the latest commit did not show a workflow run. GitHub Pages may still need to be enabled from repository settings with Source set to GitHub Actions.
-
-### 4. Build Verification
-
-After Pages is enabled, run the GitHub Actions workflow and verify:
+After the new deployment run completes, verify:
 
 - Home loads.
 - Blog loads.
@@ -87,7 +62,7 @@ After Pages is enabled, run the GitHub Actions workflow and verify:
 - `robots.txt` opens.
 - `sitemap.xml` opens.
 
-### 5. Monetisation Polish
+### 4. Monetisation Polish
 
 - Replace placeholder ad slot IDs with live AdSense slots.
 - Add affiliate disclosure text.
@@ -97,13 +72,12 @@ After Pages is enabled, run the GitHub Actions workflow and verify:
 
 ## Next Work Order
 
-1. Patch `BlogPost.jsx` safely.
-2. Patch `sitemap.xml` safely.
-3. Re-check GitHub Actions deployment.
-4. Test live preview.
-5. Add comparison/affiliate money pages.
-6. Expand each guide from framework content into deeper 1,500+ word editorial content.
+1. Confirm fresh GitHub Actions deployment status.
+2. Patch sitemap if required.
+3. Test live preview.
+4. Add comparison/affiliate money pages.
+5. Expand guide content into deeper editorial pages where needed.
 
 ## Notes
 
-Some direct full-file updates were blocked by the safety layer, so future code changes should be smaller and more targeted where possible.
+Historical failed GitHub Actions runs may remain visible in the Actions tab. The professional state is achieved when the latest workflow run and latest deployment are green.
