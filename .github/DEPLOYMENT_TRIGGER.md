@@ -2,13 +2,14 @@
 
 This file records that the Crypto AI Central deployment workflow should run from the main branch.
 
-Latest manual trigger note: 2026-05-25.
+Latest deployment trigger: 2026-05-26.
 
-Fresh deployment trigger after fixes:
+Fresh deployment trigger after article quality enforcement:
 
-- Fixed GitHub Pages route casing.
-- Added reliable public layout.
-- Added React/Vite SPA 404 fallback.
-- Added `.nojekyll` for GitHub Pages asset handling.
+- Enforced long-form guide expansion.
+- Added guide image metadata.
+- Added word count metadata.
+- Added stronger blog card image/content presentation.
+- Updated sitemap guide routes.
 
 If GitHub Actions does not start automatically, run the latest workflow from the Actions tab and confirm it uses this newest commit.
