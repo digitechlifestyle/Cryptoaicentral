@@ -211,6 +211,8 @@ export const seoArticles = articleSeeds.map((seed) => ({
   content: buildContent(seed)
 }));
 
+export const evergreenArticles = seoArticles;
+
 export const seoArticleCategories = ["all", ...Array.from(new Set(seoArticles.map((article) => article.category)))];
 
 export function getSeoArticle(slug) {
