@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Gift, Star, Trophy, Zap, CheckCircle, Clock, X, TrendingUp, Share2, MousePointerClick, UserPlus, ShieldCheck, BadgeDollarSign, Megaphone } from "lucide-react";
+import { Gift, Star, Trophy, Zap, CheckCircle, Clock, X, TrendingUp, Share2, MousePointerClick, UserPlus, ShieldCheck, DollarSign, Megaphone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import SeoMeta from "../components/shared/SeoMeta";
@@ -17,7 +17,7 @@ const fallbackRewards = [
 ];
 
 const fundingModel = [
-  { title: "AdSense revenue pool", icon: BadgeDollarSign, text: "A small monthly percentage of advertising income can fund non-cash rewards and limited promotional credits." },
+  { title: "AdSense revenue pool", icon: DollarSign, text: "A small monthly percentage of advertising income can fund non-cash rewards and limited promotional credits." },
   { title: "Affiliate commission pool", icon: TrendingUp, text: "When users drive qualified traffic or signups that generate commission, part of that value can support the rewards pool." },
   { title: "Sponsored listings", icon: Megaphone, text: "Sponsors can fund reward campaigns such as featured badges, ad credits, newsletter mentions and partner offers." },
   { title: "Non-cash rewards first", icon: Gift, text: "Start with listing credits, profile boosts, newsletter mentions, premium guide access and sponsor discounts before cash rewards." }
@@ -38,7 +38,6 @@ export default function RewardsPage() {
   const [rewards, setRewards] = useState(fallbackRewards);
   const [redemptionHistory, setRedemptionHistory] = useState([]);
   const [leaderboard, setLeaderboard] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [isRedeeming, setIsRedeeming] = useState(false);
 
   useEffect(() => {
@@ -46,7 +45,6 @@ export default function RewardsPage() {
   }, []);
 
   const loadData = async () => {
-    setIsLoading(true);
     try {
       const currentUser = await base44.auth.me();
       setUser(currentUser);
@@ -84,7 +82,6 @@ export default function RewardsPage() {
       setRewards(fallbackRewards);
       setLeaderboard([]);
     }
-    setIsLoading(false);
   };
 
   const handleRedeem = async (reward) => {
@@ -112,11 +109,7 @@ export default function RewardsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50/30 to-yellow-50/20 p-6">
-      <SeoMeta
-        title="Rewards Program | Crypto AI Central"
-        description="Learn how Crypto AI Central rewards work, how users earn points, how rewards are funded, and the anti-abuse rules behind the system."
-        keywords="crypto rewards program, Web3 loyalty, referral points, affiliate rewards, sponsored listings"
-      />
+      <SeoMeta title="Rewards Program | Crypto AI Central" description="Learn how Crypto AI Central rewards work, how users earn points, how rewards are funded, and the anti-abuse rules behind the system." keywords="crypto rewards program, Web3 loyalty, referral points, affiliate rewards, sponsored listings" />
       <div className="max-w-7xl mx-auto space-y-8">
         <div className="text-center">
           <div className="flex items-center justify-center gap-2 mb-4"><Gift className="w-8 h-8 text-purple-600" /><h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-yellow-600 bg-clip-text text-transparent">Share & Earn Rewards</h1></div>
@@ -130,40 +123,13 @@ export default function RewardsPage() {
           <Card><CardHeader><CardTitle className="text-sm font-medium flex items-center gap-2"><UserPlus className="w-4 h-4 text-purple-600" />Verified Signups</CardTitle></CardHeader><CardContent><div className="text-3xl font-bold text-slate-900">{userPoints?.signups_generated || 0}</div><p className="text-slate-500 text-sm mt-1">+100 points each</p></CardContent></Card>
         </div>
 
-        <Alert className="border-blue-500 bg-blue-50">
-          <TrendingUp className="h-5 w-5 text-blue-600" />
-          <AlertTitle className="text-blue-800 font-bold">How points are earned</AlertTitle>
-          <AlertDescription className="text-blue-700 space-y-3 mt-2">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div><strong>Share content:</strong> +10 points for sharing useful guides, tools or project pages.</div>
-              <div><strong>Qualified clicks:</strong> +25 points when a unique real visitor clicks your shared link.</div>
-              <div><strong>Verified signups:</strong> +100 points when a real user signs up from your referral.</div>
-            </div>
-            <div className="p-3 bg-white rounded-lg"><strong>Important:</strong> Points are engagement credits. Redemptions are reviewed manually and may be rejected for spam, bots, duplicate accounts or suspicious activity.</div>
-          </AlertDescription>
-        </Alert>
+        <Alert className="border-blue-500 bg-blue-50"><TrendingUp className="h-5 w-5 text-blue-600" /><AlertTitle className="text-blue-800 font-bold">How points are earned</AlertTitle><AlertDescription className="text-blue-700 space-y-3 mt-2"><div className="grid grid-cols-1 md:grid-cols-3 gap-4"><div><strong>Share content:</strong> +10 points for sharing useful guides, tools or project pages.</div><div><strong>Qualified clicks:</strong> +25 points when a unique real visitor clicks your shared link.</div><div><strong>Verified signups:</strong> +100 points when a real user signs up from your referral.</div></div><div className="p-3 bg-white rounded-lg"><strong>Important:</strong> Points are engagement credits. Redemptions are reviewed manually and may be rejected for spam, bots, duplicate accounts or suspicious activity.</div></AlertDescription></Alert>
 
-        <section>
-          <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2"><BadgeDollarSign className="w-6 h-6 text-green-600" />How the rewards are funded</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {fundingModel.map((item) => { const Icon = item.icon; return <Card key={item.title}><CardHeader><CardTitle className="flex items-center gap-2 text-lg"><Icon className="w-5 h-5 text-purple-600" />{item.title}</CardTitle></CardHeader><CardContent><p className="text-sm text-slate-600">{item.text}</p></CardContent></Card>; })}
-          </div>
-        </section>
+        <section><h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2"><DollarSign className="w-6 h-6 text-green-600" />How the rewards are funded</h2><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">{fundingModel.map((item) => { const Icon = item.icon; return <Card key={item.title}><CardHeader><CardTitle className="flex items-center gap-2 text-lg"><Icon className="w-5 h-5 text-purple-600" />{item.title}</CardTitle></CardHeader><CardContent><p className="text-sm text-slate-600">{item.text}</p></CardContent></Card>; })}</div></section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2"><ShieldCheck className="w-6 h-6 text-blue-600" />Anti-abuse and sustainability rules</h2>
-          <Card><CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">{antiAbuseRules.map((rule) => <div key={rule} className="flex items-start gap-2 text-slate-700"><CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" /><span>{rule}</span></div>)}</CardContent></Card>
-        </section>
+        <section><h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2"><ShieldCheck className="w-6 h-6 text-blue-600" />Anti-abuse and sustainability rules</h2><Card><CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">{antiAbuseRules.map((rule) => <div key={rule} className="flex items-start gap-2 text-slate-700"><CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" /><span>{rule}</span></div>)}</CardContent></Card></section>
 
-        <div>
-          <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2"><Star className="w-6 h-6 text-yellow-500" />Available Rewards</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {rewards.map((reward) => {
-              const canAfford = userPoints && userPoints.available_points >= reward.points_required;
-              return <Card key={reward.id} className={`relative overflow-hidden ${canAfford ? 'border-green-500' : ''}`}>{canAfford && <div className="absolute top-0 right-0 bg-green-500 text-white px-3 py-1 text-xs font-bold rounded-bl-lg">You can afford this!</div>}<CardHeader><CardTitle className="flex items-center gap-2"><Gift className="w-5 h-5 text-purple-600" />{reward.reward_name}</CardTitle><CardDescription>{reward.reward_description}</CardDescription></CardHeader><CardContent className="space-y-4"><div className="flex items-center justify-between"><Badge className="bg-purple-100 text-purple-800 text-lg px-4 py-1">{reward.points_required} points</Badge><Badge variant="outline" className="text-sm">{reward.reward_value}</Badge></div><Button onClick={() => handleRedeem(reward)} disabled={!canAfford || isRedeeming} className="w-full" variant={canAfford ? 'default' : 'outline'}>{canAfford ? 'Redeem Now' : `Need ${reward.points_required - (userPoints?.available_points || 0)} more points`}</Button></CardContent></Card>;
-            })}
-          </div>
-        </div>
+        <div><h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2"><Star className="w-6 h-6 text-yellow-500" />Available Rewards</h2><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">{rewards.map((reward) => { const canAfford = userPoints && userPoints.available_points >= reward.points_required; return <Card key={reward.id} className={`relative overflow-hidden ${canAfford ? 'border-green-500' : ''}`}>{canAfford && <div className="absolute top-0 right-0 bg-green-500 text-white px-3 py-1 text-xs font-bold rounded-bl-lg">You can afford this!</div>}<CardHeader><CardTitle className="flex items-center gap-2"><Gift className="w-5 h-5 text-purple-600" />{reward.reward_name}</CardTitle><CardDescription>{reward.reward_description}</CardDescription></CardHeader><CardContent className="space-y-4"><div className="flex items-center justify-between"><Badge className="bg-purple-100 text-purple-800 text-lg px-4 py-1">{reward.points_required} points</Badge><Badge variant="outline" className="text-sm">{reward.reward_value}</Badge></div><Button onClick={() => handleRedeem(reward)} disabled={!canAfford || isRedeeming} className="w-full" variant={canAfford ? 'default' : 'outline'}>{canAfford ? 'Redeem Now' : `Need ${reward.points_required - (userPoints?.available_points || 0)} more points`}</Button></CardContent></Card>; })}</div></div>
 
         {redemptionHistory.length > 0 && <div><h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2"><Clock className="w-6 h-6 text-blue-600" />Your Redemptions</h2><Card><CardContent className="p-0"><div className="divide-y">{redemptionHistory.map((redemption) => <div key={redemption.id} className="p-4 flex items-center justify-between"><div><div className="font-semibold text-slate-900">{redemption.reward_name}</div><div className="text-sm text-slate-500">{new Date(redemption.created_date).toLocaleDateString()} • {redemption.points_spent} points</div></div><Badge variant={redemption.status === 'completed' ? 'default' : redemption.status === 'pending' ? 'secondary' : redemption.status === 'approved' ? 'default' : 'destructive'}>{redemption.status === 'completed' && <CheckCircle className="w-3 h-3 mr-1" />}{redemption.status === 'pending' && <Clock className="w-3 h-3 mr-1" />}{redemption.status === 'rejected' && <X className="w-3 h-3 mr-1" />}{redemption.status}</Badge></div>)}</div></CardContent></Card></div>}
 
