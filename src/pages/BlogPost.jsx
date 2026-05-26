@@ -11,7 +11,7 @@ import SeoMeta from "../components/shared/SeoMeta";
 import RotatingBanner from "../components/shared/RotatingBanner";
 import GoogleAd from "../components/shared/GoogleAd";
 import SocialShareButtons from "../components/shared/SocialShareButtons";
-import { getArticleBySlug } from "@/data/seoArticles";
+import { getSeoArticle } from "@/data/seoArticles";
 
 function normalizeContent(content) {
   if (!content) return '';
@@ -51,7 +51,7 @@ export default function BlogPostPage() {
       return;
     }
 
-    const evergreenPost = getArticleBySlug(slug);
+    const evergreenPost = getSeoArticle(slug);
     if (evergreenPost) {
       setPost(evergreenPost);
       setIsLoading(false);
