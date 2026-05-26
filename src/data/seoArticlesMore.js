@@ -138,5 +138,33 @@ export const moreArticleSeeds = [
       { name: "Compliance platforms", body: "Manage investor checks and transfer restrictions." }
     ],
     nextSteps: "Review the issuer, legal structure, custody arrangements, investor rights and resale limitations before buying tokenised assets."
+  },
+  {
+    slug: "seo-publishing-checklist-for-crypto-ai-sites",
+    title: "SEO Publishing Checklist for Crypto and AI Websites",
+    category: "SEO",
+    excerpt: "A practical publishing checklist for Crypto AI Central covering 1,500-word articles, images, internal links, cards, metadata, ads and affiliate readiness.",
+    tags: ["SEO", "Content Strategy", "Publishing Checklist"],
+    reading_time: 12,
+    topic: "SEO publishing checklist for crypto and AI websites",
+    audience: "A profitable crypto and AI website needs more than live pages. Each article should be long-form, useful, visual, internally linked, technically crawlable and monetisation-ready without becoming spammy.",
+    definition: "An SEO publishing checklist is a repeatable quality-control process used before content goes live. It checks article depth, headings, images, links, metadata, readability, technical SEO and monetisation placement.",
+    why: "This matters because thin pages, empty cards, missing images and weak internal links reduce user trust and make the site harder for search engines to understand.",
+    sections: [
+      { heading: "Article Length and Depth", body: "Each major guide should target at least 1,500 words, but length alone is not enough. The content must answer the reader's real questions with definitions, examples, risks, tools, FAQs and next steps." },
+      { heading: "Images and Alt Text", body: "Every guide should include a hero image, a useful caption and descriptive alt text. Images should explain the topic or support comparison, not just decorate the page." },
+      { heading: "Internal Links and Cards", body: "Every card should link to the guide it represents. Each article should link naturally to related guides such as wallets, exchanges, DeFi, stablecoins, AI tools and tax basics." }
+    ],
+    risks: [
+      { name: "Thin content", body: "Short pages with generic explanations do not build authority or trust." },
+      { name: "Broken cards", body: "Cards that do not link to the right page frustrate readers and waste crawl paths." },
+      { name: "Over-monetisation", body: "Too many ads or affiliate blocks can make a site look spammy and reduce credibility." }
+    ],
+    tools: [
+      { name: "Sitemap and robots files", body: "Help search engines discover the important pages." },
+      { name: "Metadata checks", body: "Confirm titles, descriptions, Open Graph images and canonical URLs are present." },
+      { name: "Content audits", body: "Find thin pages, missing images, weak links and outdated information." }
+    ],
+    nextSteps: "Apply this checklist to every Blog, Learn and guide page before deployment. Fix missing images, short content and broken links first, then improve monetisation blocks and comparison pages."
   }
 ];
