@@ -18,6 +18,10 @@ function guideUrl(slug) {
   return createPageUrl("GuidePost") + `?slug=${slug}`;
 }
 
+function fallbackImage(topic = "Crypto AI") {
+  return `https://placehold.co/1200x675/0f172a/ffffff?text=${encodeURIComponent(topic + ' Guide')}`;
+}
+
 function GuideVisual({ post }) {
   return (
     <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950 p-6 text-white shadow-2xl md:p-8">
@@ -63,8 +67,9 @@ export default function GuidePostPage() {
   }
 
   const content = cleanMarkdown(post.content || "");
-  const wordCount = content.split(/\s+/).filter(Boolean).length;
+  const wordCount = post.word_count || content.split(/\s+/).filter(Boolean).length;
   const readingTime = post.reading_time || Math.max(3, Math.ceil(wordCount / 200));
+  const imageSrc = post.image_url || fallbackImage(post.topic || post.category || "Crypto AI");
   const formattedDate = new Date(post.created_date || Date.now()).toLocaleDateString("en-GB", {
     year: "numeric",
     month: "long",
@@ -89,7 +94,7 @@ export default function GuidePostPage() {
               <div className="mb-5 flex flex-wrap items-center gap-2">
                 <Badge className="bg-blue-600 text-white">{post.category}</Badge>
                 <Badge className="bg-emerald-500 text-slate-950">Evergreen Guide</Badge>
-                <Badge variant="outline" className="border-white/20 text-white">Updated 2026</Badge>
+                <Badge variant="outline" className="border-white/20 text-white">{wordCount.toLocaleString()} words</Badge>
               </div>
               <h1 className="max-w-4xl text-4xl font-black leading-tight tracking-tight text-white md:text-6xl">{post.title}</h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300 md:text-xl">{post.excerpt}</p>
@@ -106,6 +111,11 @@ export default function GuidePostPage() {
 
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,1fr)_340px]">
         <article className="overflow-hidden rounded-3xl border border-slate-200 bg-white text-slate-950 shadow-2xl">
+          <figure className="border-b border-slate-200 bg-slate-100">
+            <img src={imageSrc} alt={post.image_alt || `${post.title} visual guide`} className="h-auto w-full object-cover" loading="eager" />
+            <figcaption className="px-6 py-3 text-sm text-slate-600 md:px-8">{post.image_caption || `A visual guide for ${post.title}.`}</figcaption>
+          </figure>
+
           <div className="border-b border-slate-200 bg-slate-50 p-6 md:p-8">
             <div className="grid gap-4 md:grid-cols-3">
               <div className="rounded-2xl bg-white p-5 shadow-sm"><CheckCircle2 className="mb-3 h-6 w-6 text-emerald-600" /><h3 className="font-black">Beginner-friendly</h3><p className="mt-2 text-sm text-slate-600">Plain-English education before products.</p></div>
@@ -115,7 +125,7 @@ export default function GuidePostPage() {
           </div>
 
           <div className="p-6 md:p-10">
-            <div className="prose prose-lg prose-slate max-w-none prose-headings:font-black prose-h2:mt-12 prose-h2:border-t prose-h2:border-slate-200 prose-h2:pt-8 prose-h2:text-3xl prose-h3:text-2xl prose-p:leading-8 prose-li:leading-8 prose-strong:text-slate-950">
+            <div className="prose prose-lg prose-slate max-w-none prose-img:rounded-2xl prose-img:shadow-lg prose-headings:font-black prose-h2:mt-12 prose-h2:border-t prose-h2:border-slate-200 prose-h2:pt-8 prose-h2:text-3xl prose-h3:text-2xl prose-p:leading-8 prose-li:leading-8 prose-strong:text-slate-950">
               <ReactMarkdown>{content}</ReactMarkdown>
             </div>
 
@@ -138,14 +148,7 @@ export default function GuidePostPage() {
               <Link to={createPageUrl("Blog")}><Button className="w-full">See All Guides <ArrowRight className="ml-2 h-4 w-4" /></Button></Link>
             </CardContent>
           </Card>
-
-          <Card className="border-amber-200 bg-amber-50 text-slate-950">
-            <CardContent className="p-6">
-              <h3 className="mb-3 text-lg font-black">Affiliate space</h3>
-              <p className="text-sm leading-6 text-slate-700">Future comparison links should be added here only after review, disclosure and risk checks.</p>
-            </CardContent>
-          </Card>
-
+          <Card className="border-amber-200 bg-amber-50 text-slate-950"><CardContent className="p-6"><h3 className="mb-3 text-lg font-black">Affiliate space</h3><p className="text-sm leading-6 text-slate-700">Future comparison links should be added here only after review, disclosure and risk checks.</p></CardContent></Card>
           <GoogleAd adSlot="1234567890" style={{ display: "block", width: "300px", height: "250px", maxWidth: "100%" }} adFormat="rectangle" />
         </aside>
       </div>
