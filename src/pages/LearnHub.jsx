@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, Clock, GraduationCap } from "lucide-react";
+import { ArrowRight, BookOpen, Clock, GraduationCap, Image as ImageIcon } from "lucide-react";
 import { createPageUrl } from "@/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -12,6 +12,11 @@ import { allSeoArticles } from "@/data/allSeoArticles";
 
 function guideUrl(slug) {
   return createPageUrl("GuidePost") + `?slug=${slug}`;
+}
+
+function cardImage(article) {
+  if (article.image_url) return article.image_url;
+  return `https://placehold.co/900x500/0f172a/ffffff?text=${encodeURIComponent((article.category || "Crypto AI") + " Guide")}`;
 }
 
 const clusters = [
@@ -50,15 +55,13 @@ export default function LearnHubPage() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-        <div className="mb-8 flex justify-center">
-          <RotatingBanner bannerType="leaderboard" />
-        </div>
+        <div className="mb-8 flex justify-center"><RotatingBanner bannerType="leaderboard" /></div>
 
         <section className="mb-12">
           <div className="flex items-end justify-between gap-4 mb-6 flex-wrap">
             <div>
               <h2 className="text-3xl font-bold text-slate-900">Guided Learning Paths</h2>
-              <p className="text-slate-600 mt-2">Every card links to a live guide page.</p>
+              <p className="text-slate-600 mt-2">Every card links to a live long-form guide page with image support.</p>
             </div>
             <Link to={createPageUrl("Blog")}><Button variant="outline">View All Guides</Button></Link>
           </div>
@@ -98,15 +101,21 @@ export default function LearnHubPage() {
           <h2 className="text-3xl font-bold text-slate-900 mb-6">All Current Guides</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {allSeoArticles.map((article) => (
-              <Link key={article.slug} to={guideUrl(article.slug)}>
-                <Card className="h-full bg-white border-slate-200 hover:shadow-xl transition-all">
-                  <CardContent className="p-6 flex flex-col h-full">
-                    <div className="flex items-center gap-2 mb-4 flex-wrap">
-                      <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-100">{article.category}</Badge>
-                      <span className="text-xs text-slate-500 flex items-center gap-1"><Clock className="w-3 h-3" /> {article.reading_time} min read</span>
+              <Link key={article.slug} to={guideUrl(article.slug)} className="group">
+                <Card className="h-full bg-white border-slate-200 hover:shadow-xl transition-all overflow-hidden">
+                  <div className="relative h-44 bg-slate-950 overflow-hidden">
+                    <img src={cardImage(article)} alt={article.image_alt || `${article.title} image`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent" />
+                    <Badge className="absolute left-4 bottom-4 bg-blue-600 text-white">{article.category}</Badge>
+                  </div>
+                  <CardContent className="p-6 flex flex-col h-[calc(100%-11rem)]">
+                    <div className="flex items-center gap-2 mb-4 flex-wrap text-xs text-slate-500">
+                      <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {article.reading_time} min read</span>
+                      <span className="flex items-center gap-1"><BookOpen className="w-3 h-3" /> {article.word_count?.toLocaleString?.() || "1,500+"} words</span>
+                      <span className="flex items-center gap-1"><ImageIcon className="w-3 h-3" /> image</span>
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-3 hover:text-blue-600">{article.title}</h3>
-                    <p className="text-sm text-slate-600 flex-1">{article.excerpt}</p>
+                    <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600">{article.title}</h3>
+                    <p className="text-sm text-slate-600 flex-1 line-clamp-4">{article.excerpt}</p>
                     <div className="mt-5 text-blue-600 font-semibold text-sm flex items-center gap-2">Read guide <ArrowRight className="w-4 h-4" /></div>
                   </CardContent>
                 </Card>
